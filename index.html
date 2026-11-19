@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAL General Construction (Pty) Ltd | Building, Renovation & Construction Solutions</title>
+    <meta name="description" content="SAL General Construction (Pty) Ltd is a professional construction company providing building, renovation, tiling, plumbing, carpentry, and property maintenance solutions with quality workmanship.">
+    
+    <!-- Google Fonts: Space Grotesk (Architectural Display) & Inter (Clean Corporate Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        charcoal: {
+                            950: '#09090B',
+                            900: '#111215',
+                            800: '#181A1F',
+                            700: '#272A32',
+                        },
+                        gold: {
+                            500: '#D97706',
+                            600: '#C26604',
+                            accent: '#E07A16',
+                        },
+                        concrete: {
+                            50: '#F8F9FA',
+                            100: '#F1F3F5',
+                            200: '#E5E7EB',
+                            400: '#9CA3AF',
+                            600: '#4B5563',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Architectural Precision Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.025em;
+        }
+
+        /* Subtle Architectural Grid Background */
+        .bg-architectural-grid {
+            background-size: 64px 64px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            animation: gridDrift 28s linear infinite;
+        }
+
+        .bg-architectural-grid-light {
+            background-size: 64px 64px;
+            background-image: 
+                linear-gradient(to right, rgba(17, 18, 21, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(17, 18, 21, 0.04) 1px, transparent 1px);
+            animation: gridDrift 32s linear infinite;
+        }
+
+        .dark .bg-architectural-grid-light {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        @keyframes gridDrift {
+            0% { background-position: 0 0; }
+            100% { background-position: 64px 64px; }
+        }
+
+        /* Entrance Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating & Kinetic Architectural Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float-slow {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(224, 122, 22, 0.45); }
+            50% { box-shadow: 0 0 0 10px rgba(224, 122, 22, 0); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 2.8s infinite;
+        }
+
+        @keyframes beamSweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(220%); }
+        }
+        .btn-kinetic {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-kinetic::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+            transform: translateX(-100%);
+            animation: beamSweep 3.8s ease-in-out infinite;
+        }
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 32s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Hero Text Stagger */
+        @keyframes heroFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-hero-1 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; opacity: 0; }
+        .animate-hero-2 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards; opacity: 0; }
+        .animate-hero-3 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; opacity: 0; }
+        .animate-hero-4 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards; opacity: 0; }
+
+        /* Ken Burns Fallback/Enhancement for Hero Media */
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        .hero-media-zoom {
+            animation: slowZoom 24s ease-in-out infinite alternate;
+        }
+
+        /* Cinematic Full-Site Moving Background Slideshow */
+        @keyframes cinemagraphPan {
+            0% { transform: scale(1.02) translate(0%, 0%); }
+            50% { transform: scale(1.11) translate(-1.5%, -1%); }
+            100% { transform: scale(1.05) translate(1.2%, 0.8%); }
+        }
+        .bg-cinema-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: cinemagraphPan 22s ease-in-out infinite alternate;
+            will-change: opacity, transform;
+        }
+        .bg-cinema-slide.is-active {
+            opacity: 1;
+        }
+
+        /* Continuous Smooth Moving Showcase Track for the 6 Project Pictures */
+        @keyframes galleryGlide {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .gallery-moving-track {
+            display: flex;
+            width: max-content;
+            gap: 1.5rem;
+            animation: galleryGlide 34s linear infinite;
+            will-change: transform;
+        }
+        .gallery-moving-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Service Card Image Scale & Lift */
+        .service-card {
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.07);
+        }
+        .service-img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Nav Underline Slide */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 2px;
+            background-color: #E07A16;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111215;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3F3F46;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E07A16;
+        }
+    </style>
+</head>
+<body class="bg-white/90 text-charcoal-900 dark:bg-charcoal-950/90 dark:text-concrete-100 antialiased selection:bg-gold-accent selection:text-white relative">
+
+    <!-- ==================== GLOBAL CINEMATIC MOVING PHOTOGRAPH BACKGROUND ==================== -->
+    <div id="global-cinema-bg" class="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div id="global-cinema-slides" class="absolute inset-0"></div>
+        <!-- Adaptive Day/Night Architectural Tint so all text remains ultra-crisp while photography shines through -->
+        <div class="absolute inset-0 bg-white/82 dark:bg-charcoal-950/84 backdrop-blur-[2px] transition-colors duration-500"></div>
+        <div class="absolute inset-0 bg-architectural-grid opacity-60"></div>
+    </div>
+
+    <!-- ==================== NAVIGATION BAR ==================== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/85 dark:bg-charcoal-950/85 backdrop-blur-md border-b border-concrete-200 dark:border-white/10">
+                    <span>Mon – Fri: 08:00 – 17:00</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="tel:0767198627" class="hover:text-gold-accent transition-colors flex items-center gap-1.5 font-medium text-charcoal-900 dark:text-concrete-200">
+                        <svg class="w-3.5 h-3.5 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        076 719 8627
+                    </a>
+                    <a href="https://wa.me/27767198627" target="_blank" rel="noopener noreferrer" class="text-gold-accent hover:text-amber-500 font-semibold transition-colors">
+                        Direct WhatsApp Consultation &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation (Strictly Home, About Us, Services, Contacts + Day/Night Switch) -->
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" aria-label="Primary Navigation">
+            <!-- Brand Monogram & Wordmark -->
+            <a href="#home" class="flex items-center gap-3.5 group focus:outline-none">
+                <div class="w-10 h-10 bg-gold-accent flex items-center justify-center rounded-sm shadow-lg group-hover:bg-amber-600 transition-transform duration-300 group-hover:scale-105">
+                    <span class="font-display font-bold text-white text-lg tracking-wider">SAL</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-charcoal-900 dark:text-white text-base sm:text-lg tracking-tight leading-none transition-colors">SAL GENERAL</span>
+                    <span class="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-concrete-600 dark:text-concrete-400 uppercase mt-1">Construction (Pty) Ltd</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links: Home, About Us, Services, Contacts -->
+            <div class="hidden lg:flex items-center space-x-10 text-sm font-semibold text-charcoal-800 dark:text-concrete-200">
+                <a href="#home" class="nav-link hover:text-gold-accent transition-colors py-1">Home</a>
+                <a href="#about" class="nav-link hover:text-gold-accent transition-colors py-1">About Us</a>
+                <a href="#services" class="nav-link hover:text-gold-accent transition-colors py-1">Services</a>
+                <a href="#contact" class="nav-link hover:text-gold-accent transition-colors py-1">Contacts</a>
+            </div>
+
+            <!-- Day / Night Toggle Switch, CTA Button & Mobile Hamburger -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Day / Night Mode Toggle Switch -->
+                <button id="theme-toggle" type="button" aria-label="Toggle Day and Night Mode"
+                        class="relative inline-flex items-center h-9 w-16 rounded-sm bg-concrete-200 dark:bg-charcoal-800 border border-concrete-300 dark:border-white/15 p-1 transition-colors duration-300 focus:outline-none"
+                        title="Switch Day / Night Mode">
+                    <span class="sr-only">Toggle Day and Night Mode</span>
+                    <!-- Sun Icon (Day) -->
+                    <span class="w-6 h-6 flex items-center justify-center text-amber-500 z-10">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+                    </span>
+                    <!-- Moon Icon (Night) -->
+                    <span class="w-6 h-6 flex items-center justify-center text-concrete-400 dark:text-gold-accent z-10 ml-auto">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+                    </span>
+                    <!-- Sliding Thumb -->
+                    <span id="theme-toggle-thumb" class="absolute left-1 top-1 w-6 h-6 bg-white dark:bg-charcoal-950 rounded-sm shadow-md transform transition-transform duration-300 translate-x-0 dark:translate-x-7"></span>
+                </button>
+
+                <a href="#contact" class="btn-kinetic hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-gold-accent hover:bg-amber-600 rounded-sm transition-all shadow-md">
+                    Request Quote
+                </a>
+                <button id="mobile-menu-btn" type="button" class="lg:hidden p-2.5 text-charcoal-900 dark:text-white hover:text-gold-accent focus:outline-none border border-concrete-200 dark:border-white/15 rounded-sm" aria-label="Toggle Menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Slide-Down Drawer (Home, About Us, Services, Contacts) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-charcoal-900 border-b border-concrete-200 dark:border-white/10 px-6 pt-4 pb-8 space-y-4">
+            <div class="flex flex-col space-y-3 text-base font-semibold text-charcoal-900 dark:text-concrete-100">
+                <a href="#home" class="mobile-link py-2 border-b border-concrete-100 dark:border-white/5 hover:text-gold-accent">Home</a>
+                <a href="#about" class="mobile-link py-2 border-b border-concrete-100 dark:border-white/5 hover:text-gold-accent">About Us</a>
+                <a href="#services" class="mobile-link py-2 border-b border-concrete-100 dark:border-white/5 hover:text-gold-accent">Services</a>
+                <a href="#contact" class="mobile-link py-2 hover:text-gold-accent">Contacts</a>
+            </div>
+            <div class="pt-4 flex flex-col sm:flex-row gap-3">
+                <a href="tel:0767198627" class="w-full py-3 px-4 text-center text-sm font-bold uppercase tracking-wider text-charcoal-900 dark:text-white border border-concrete-300 dark:border-white/20 rounded-sm hover:bg-concrete-100 dark:hover:bg-white/5">
+                    Call 076 719 8627
+                </a>
+                <a href="https://wa.me/27767198627" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 text-center text-sm font-bold uppercase tracking-wider text-white bg-gold-accent rounded-sm hover:bg-amber-600">
+                    WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" class="relative z-10 min-h-screen flex items-center bg-charcoal-950/75 overflow-hidden pt-24 pb-16">
+        <!-- Cinematic Full-Screen Photo Reel (All Your Pictures Transitioning One by One) -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div id="hero-cinema-slides" class="absolute inset-0"></div>
+            <!-- Sophisticated Architectural Dark Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/90 via-charcoal-950/65 to-charcoal-950/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-charcoal-950/35"></div>
+            <div class="absolute inset-0 bg-architectural-grid"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-3xl">
+                <!-- Architectural Eyebrow -->
+                <div class="animate-hero-1 inline-flex items-center gap-3 px-3.5 py-1.5 bg-white/5 border border-white/15 backdrop-blur-sm rounded-sm mb-8">
+                    <span class="w-2 h-2 bg-gold-accent animate-ping"></span>
+                    <span class="text-xs font-semibold uppercase tracking-[0.22em] text-concrete-200">
+                        SAL General Construction (Pty) Ltd
+                    </span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="animate-hero-2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-bold text-white leading-[1.06] tracking-tight mb-6">
+                    BUILDING YOUR VISION.<br>
+                    <span class="text-gold-accent">DELIVERING EXCELLENCE.</span>
+                </h1>
+
+                <!-- Supporting Text -->
+                <p class="animate-hero-3 text-base sm:text-lg md:text-xl text-concrete-200 font-light leading-relaxed max-w-2xl mb-10 border-l-2 border-gold-accent pl-5">
+                    From foundations to finishing touches, SAL General Construction delivers dependable building, renovation and construction solutions with quality workmanship at every stage.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="animate-hero-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a href="#contact" class="btn-kinetic inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-white bg-gold-accent hover:bg-amber-600 rounded-sm transition-all shadow-xl shadow-black/30 group">
+                        <span>Request a Free Quote</span>
+                        <svg class="w-4 h-4 ml-2.5 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#services" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-white bg-white/5 hover:bg-white/15 border border-white/25 backdrop-blur-sm rounded-sm transition-all hover:border-gold-accent">
+                        Explore Our Services
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Architectural Operational Strip -->
+            <div class="mt-16 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6 text-white">
+                <div class="flex items-start gap-3.5 transition-transform duration-300 hover:translate-x-1">
+                    <span class="text-gold-accent font-display font-bold text-sm mt-0.5">01</span>
+                    <div>
+                        <p class="text-xs uppercase tracking-widest text-concrete-400">Sector Scope</p>
+                        <p class="text-sm font-semibold text-white mt-0.5">Residential & Commercial Construction</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3.5 transition-transform duration-300 hover:translate-x-1">
+                    <span class="text-gold-accent font-display font-bold text-sm mt-0.5">02</span>
+                    <div>
+                        <p class="text-xs uppercase tracking-widest text-concrete-400">Direct Consultation</p>
+                        <p class="text-sm font-semibold text-white mt-0.5">076 719 8627 &bull; Mon–Fri, 08:00–17:00</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3.5 transition-transform duration-300 hover:translate-x-1">
+                    <span class="text-gold-accent font-display font-bold text-sm mt-0.5">03</span>
+                    <div>
+                        <p class="text-xs uppercase tracking-widest text-concrete-400">Execution Standard</p>
+                        <p class="text-sm font-semibold text-white mt-0.5">End-to-End Building & Maintenance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== KINETIC ARCHITECTURAL DISCIPLINES TICKER ==================== -->
+    <div class="relative z-10 bg-charcoal-900/90 dark:bg-black/90 backdrop-blur-md border-y border-white/10 py-3.5 overflow-hidden select-none">
+        <div class="animate-marquee flex items-center space-x-10 text-xs font-display font-bold uppercase tracking-[0.25em] text-concrete-300">
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>General Building Construction</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Residential & Commercial Builds</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Renovations & Extensions</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Tiling & Flooring Installation</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Plumbing Installations & Repairs</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Carpentry & Woodwork</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Property Maintenance</span>
+            <!-- Seamless Duplicate Loop -->
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>General Building Construction</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Residential & Commercial Builds</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Renovations & Extensions</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Tiling & Flooring Installation</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Plumbing Installations & Repairs</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Carpentry & Woodwork</span>
+            <span class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-gold-accent"></span>Property Maintenance</span>
+        </div>
+    </div>
+
+    <!-- ==================== TRUST & COMPANY INTRODUCTION ==================== -->
+    <section id="about" class="py-24 lg:py-32 bg-white/85 dark:bg-charcoal-950/85 backdrop-blur-sm bg-architectural-grid-light relative z-10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Architectural Moving Photograph Reel (All Your Pictures) -->
+                <div class="lg:col-span-6 reveal relative">
+                    <div class="relative overflow-hidden rounded-sm shadow-2xl bg-charcoal-900 group h-[460px] sm:h-[540px]">
+                        <div id="about-cinema-slides" class="absolute inset-0"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/75 via-transparent to-charcoal-950/20 pointer-events-none"></div>
+                        <!-- Live Reel Indicator Badge -->
+                        <div class="absolute top-4 left-4 z-10 px-3 py-1.5 bg-charcoal-950/80 backdrop-blur-md border border-white/15 rounded-sm flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-gold-accent animate-ping"></span>
+                            <span id="about-slide-label" class="text-[11px] font-display font-bold uppercase tracking-widest text-white">Project Showcase Reel</span>
+                        </div>
+                    </div>
+                    <!-- Floating Architectural Structural Accent Box -->
+                    <div class="hidden sm:block absolute -bottom-6 -right-6 z-20 bg-charcoal-900 dark:bg-charcoal-800 text-white p-7 rounded-sm shadow-xl border-l-4 border-gold-accent max-w-xs animate-float-slow">
+                        <p class="text-xs uppercase tracking-[0.2em] text-gold-accent font-bold mb-1">Corporate Mandate</p>
+                        <p class="font-display text-lg font-semibold leading-snug">
+                            Precision execution, structural integrity, and accountable site management.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Company Overview -->
+                <div class="lg:col-span-6 reveal">
+                    <div class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.22em] text-gold-accent mb-4">
+                        <span class="w-8 h-[2px] bg-gold-accent"></span>
+                        <span>Company Profile</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 dark:text-white leading-[1.12] mb-6">
+                        CONSTRUCTION BUILT ON QUALITY.
+                    </h2>
+
+                    <p class="text-base sm:text-lg text-concrete-600 dark:text-concrete-300 leading-relaxed mb-5">
+                        <strong class="text-charcoal-900 dark:text-white font-semibold">SAL General Construction (Pty) Ltd</strong> is a professional construction company providing comprehensive building, renovation, and general construction solutions for residential and commercial clients.
+                    </p>
+
+                    <p class="text-base text-concrete-600 dark:text-concrete-400 leading-relaxed mb-8">
+                        Every project we undertake is governed by strict attention to detail, transparent communication, and disciplined site execution. Whether constructing from the ground up, executing structural extensions, or delivering specialized interior and exterior finishing, our focus remains steadfast: dependable service delivery, lasting workmanship, and complete customer satisfaction.
+                    </p>
+
+                    <!-- Three Premium Visual Highlights -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-6 border-t border-concrete-200 dark:border-white/10">
+                        <div class="p-4 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 rounded-sm transition-transform duration-300 hover:-translate-y-1">
+                            <div class="w-9 h-9 bg-charcoal-900 dark:bg-charcoal-800 text-gold-accent flex items-center justify-center rounded-sm mb-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </div>
+                            <h3 class="font-display font-bold text-charcoal-900 dark:text-white text-base mb-1">Quality Workmanship</h3>
+                            <p class="text-xs text-concrete-600 dark:text-concrete-400 leading-relaxed">Durable materials and skilled trade execution across every phase.</p>
+                        </div>
+
+                        <div class="p-4 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 rounded-sm transition-transform duration-300 hover:-translate-y-1">
+                            <div class="w-9 h-9 bg-charcoal-900 dark:bg-charcoal-800 text-gold-accent flex items-center justify-center rounded-sm mb-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <h3 class="font-display font-bold text-charcoal-900 dark:text-white text-base mb-1">Reliable Project Delivery</h3>
+                            <p class="text-xs text-concrete-600 dark:text-concrete-400 leading-relaxed">Structured scheduling and consistent on-site progress accountability.</p>
+                        </div>
+
+                        <div class="p-4 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 rounded-sm transition-transform duration-300 hover:-translate-y-1">
+                            <div class="w-9 h-9 bg-charcoal-900 dark:bg-charcoal-800 text-gold-accent flex items-center justify-center rounded-sm mb-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            </div>
+                            <h3 class="font-display font-bold text-charcoal-900 dark:text-white text-base mb-1">Professional Service</h3>
+                            <p class="text-xs text-concrete-600 dark:text-concrete-400 leading-relaxed">Clear client consultation, accurate quotations, and responsive support.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CORE SERVICES (10 SERVICES) ==================== -->
+    <section id="services" class="relative z-10 py-24 lg:py-32 bg-concrete-50/85 dark:bg-charcoal-900/85 backdrop-blur-sm border-t border-concrete-200 dark:border-white/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 reveal">
+                <div>
+                    <div class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.22em] text-gold-accent mb-4">
+                        <span class="w-8 h-[2px] bg-gold-accent"></span>
+                        <span>Core Disciplines</span>
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 dark:text-white leading-tight">
+                        COMPREHENSIVE CONSTRUCTION SERVICES
+                    </h2>
+                </div>
+                <p class="text-concrete-600 dark:text-concrete-400 text-sm sm:text-base max-w-md mt-4 lg:mt-0">
+                    Specialized building, renovation, and maintenance capabilities delivered with consistent site supervision and durable materials.
+                </p>
+            </div>
+
+            <!-- 3-Column Responsive Service Grid (Populated via JS) -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- ==================== VISUAL CAPABILITIES / PORTFOLIO SHOWCASE (STRICTLY 6 PICTURES IN MOVING SHOWCASE) ==================== -->
+    <section id="capabilities" class="py-24 lg:py-32 bg-charcoal-900/88 dark:bg-charcoal-950/88 backdrop-blur-md text-white relative z-10 border-t border-white/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Header & Filter Tabs -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 reveal">
+                <div>
+                    <div class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.22em] text-gold-accent mb-4">
+                        <span class="w-8 h-[2px] bg-gold-accent"></span>
+                        <span>Scope & Craftsmanship Showcase</span>
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        CONSTRUCTION & FINISHING CAPABILITIES
+                    </h2>
+                    <p class="text-concrete-300 text-sm mt-3 max-w-2xl">
+                        Explore six curated visual showcases gliding continuously across our core trade disciplines. Hover to pause or click any card to inspect in full detail.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Category Filter -->
+            <div class="flex flex-wrap gap-2 mb-10 reveal" role="tablist" aria-label="Capability Categories">
+                <button data-filter="all" class="filter-btn active px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm bg-gold-accent text-white transition-all">
+                    All Works (6 Moving)
+                </button>
+                <button data-filter="Building Construction" class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm bg-charcoal-800/90 text-concrete-300 hover:text-white border border-white/10 transition-all">
+                    Building Construction
+                </button>
+                <button data-filter="Renovations" class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm bg-charcoal-800/90 text-concrete-300 hover:text-white border border-white/10 transition-all">
+                    Renovations
+                </button>
+                <button data-filter="Tiling" class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm bg-charcoal-800/90 text-concrete-300 hover:text-white border border-white/10 transition-all">
+                    Tiling
+                </button>
+                <button data-filter="Plumbing" class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm bg-charcoal-800/90 text-concrete-300 hover:text-white border border-white/10 transition-all">
+                    Plumbing
+                </button>
+                <button data-filter="Carpentry" class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm bg-charcoal-800/90 text-concrete-300 hover:text-white border border-white/10 transition-all">
+                    Carpentry
+                </button>
+                <button data-filter="Interior Finishing" class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm bg-charcoal-800/90 text-concrete-300 hover:text-white border border-white/10 transition-all">
+                    Interior Finishing
+                </button>
+            </div>
+        </div>
+
+        <!-- Full-Width Continuous Moving Showcase Stage (Strictly 6 Pictures) -->
+        <div id="gallery-stage" class="w-full overflow-hidden py-2">
+            <div id="gallery-grid" class="gallery-moving-track px-6">
+                <!-- 6 Gallery items populated cleanly via JS -->
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Transparent Visual Disclaimer -->
+            <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-concrete-300">
+                <p>* Visual showcase illustrates industry construction standards and trade scopes delivered by SAL General Construction (Pty) Ltd.</p>
+                <a href="#contact" class="text-gold-accent hover:text-amber-400 font-semibold uppercase tracking-wider whitespace-nowrap">
+                    Enquire About Your Project &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHY CHOOSE SAL GENERAL CONSTRUCTION ==================== -->
+    <section id="why-us" class="relative z-10 py-24 lg:py-32 bg-white/85 dark:bg-charcoal-950/85 backdrop-blur-sm border-b border-concrete-200 dark:border-white/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                <!-- Left Sticky Pillar Intro -->
+                <div class="lg:col-span-5 reveal">
+                    <div class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.22em] text-gold-accent mb-4">
+                        <span class="w-8 h-[2px] bg-gold-accent"></span>
+                        <span>The SAL Standard</span>
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 dark:text-white leading-tight mb-6">
+                        WHY CHOOSE SAL GENERAL CONSTRUCTION?
+                    </h2>
+                    <p class="text-base text-concrete-600 dark:text-concrete-400 leading-relaxed mb-8">
+                        Selecting a construction partner requires confidence in their operational discipline, workmanship integrity, and ability to deliver without compromise. We bring structured accountability to every site.
+                    </p>
+                    <div class="p-6 bg-charcoal-900 dark:bg-charcoal-900 text-white rounded-sm border-l-4 border-gold-accent shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                        <p class="font-display text-lg font-semibold mb-2">Direct Accountability</p>
+                        <p class="text-sm text-concrete-300 leading-relaxed mb-4">
+                            From initial site evaluation through to final handover, our leadership remains directly accessible to ensure specifications are met accurately.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-gold-accent hover:text-amber-400">
+                            Schedule a Consultation &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right 6 Core Differentiators Grid -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 reveal">
+                    <!-- Item 1 -->
+                    <div class="p-7 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 hover:border-gold-accent/60 transition-all duration-300 hover:-translate-y-1 rounded-sm">
+                        <span class="font-display text-xs font-bold text-gold-accent tracking-widest uppercase">01 / Standard</span>
+                        <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mt-2 mb-3">Commitment to Quality</h3>
+                        <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                            We adhere to sound building practices and proven construction methods so every structure and finish is built for long-term durability.
+                        </p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="p-7 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 hover:border-gold-accent/60 transition-all duration-300 hover:-translate-y-1 rounded-sm">
+                        <span class="font-display text-xs font-bold text-gold-accent tracking-widest uppercase">02 / Precision</span>
+                        <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mt-2 mb-3">Attention to Detail</h3>
+                        <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                            From structural alignment and waterproofing to crisp tiling lines and joinery finishes, we inspect every millimeter of our work.
+                        </p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="p-7 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 hover:border-gold-accent/60 transition-all duration-300 hover:-translate-y-1 rounded-sm">
+                        <span class="font-display text-xs font-bold text-gold-accent tracking-widest uppercase">03 / Craft</span>
+                        <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mt-2 mb-3">Professional Workmanship</h3>
+                        <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                            Our teams maintain neat, well-organized work sites and execute specialized building, plumbing, and carpentry tasks with pride.
+                        </p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="p-7 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 hover:border-gold-accent/60 transition-all duration-300 hover:-translate-y-1 rounded-sm">
+                        <span class="font-display text-xs font-bold text-gold-accent tracking-widest uppercase">04 / Reliability</span>
+                        <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mt-2 mb-3">Dependable Construction Solutions</h3>
+                        <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                            Clients rely on us for realistic timelines, transparent cost breakdowns, and consistent progress from start to completion.
+                        </p>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="p-7 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 hover:border-gold-accent/60 transition-all duration-300 hover:-translate-y-1 rounded-sm">
+                        <span class="font-display text-xs font-bold text-gold-accent tracking-widest uppercase">05 / Partnership</span>
+                        <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mt-2 mb-3">Customer-Focused Approach</h3>
+                        <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                            We listen carefully to your project goals, budget parameters, and functional requirements to tailor practical construction solutions.
+                        </p>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="p-7 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 hover:border-gold-accent/60 transition-all duration-300 hover:-translate-y-1 rounded-sm">
+                        <span class="font-display text-xs font-bold text-gold-accent tracking-widest uppercase">06 / Versatility</span>
+                        <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mt-2 mb-3">Residential & Commercial Scope</h3>
+                        <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                            Equipped to service private homeowners, landlords, retail spaces, offices, and commercial property maintenance requirements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== OUR WORKING PROCESS (6-STEP TIMELINE) ==================== -->
+    <section id="process" class="relative z-10 py-24 lg:py-32 bg-concrete-50/85 dark:bg-charcoal-900/85 backdrop-blur-sm transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <div class="inline-flex items-center justify-center gap-2.5 text-xs font-bold uppercase tracking-[0.22em] text-gold-accent mb-4">
+                    <span class="w-8 h-[2px] bg-gold-accent"></span>
+                    <span>Execution Methodology</span>
+                    <span class="w-8 h-[2px] bg-gold-accent"></span>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 dark:text-white leading-tight mb-4">
+                    OUR WORKING PROCESS
+                </h2>
+                <p class="text-concrete-600 dark:text-concrete-400 text-base">
+                    A structured, transparent six-stage workflow engineered to eliminate guesswork and ensure predictable, high-quality project outcomes.
+                </p>
+            </div>
+
+            <!-- 6-Stage Architectural Timeline Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                <!-- Step 01 -->
+                <div class="relative bg-white dark:bg-charcoal-950 p-8 border border-concrete-200 dark:border-white/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-display text-3xl font-bold text-gold-accent">01</span>
+                        <span class="h-[1px] flex-grow bg-concrete-200 dark:bg-white/10 ml-4 group-hover:bg-gold-accent transition-colors"></span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mb-3">Initial Consultation</h3>
+                    <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                        We discuss your vision, project objectives, timelines, and technical requirements to establish a clear foundation for your build or renovation.
+                    </p>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="relative bg-white dark:bg-charcoal-950 p-8 border border-concrete-200 dark:border-white/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-display text-3xl font-bold text-gold-accent">02</span>
+                        <span class="h-[1px] flex-grow bg-concrete-200 dark:bg-white/10 ml-4 group-hover:bg-gold-accent transition-colors"></span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mb-3">Site Assessment</h3>
+                    <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                        A thorough on-site inspection and measurement evaluation to assess structural conditions, access, services, and material specifications.
+                    </p>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="relative bg-white dark:bg-charcoal-950 p-8 border border-concrete-200 dark:border-white/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-display text-3xl font-bold text-gold-accent">03</span>
+                        <span class="h-[1px] flex-grow bg-concrete-200 dark:bg-white/10 ml-4 group-hover:bg-gold-accent transition-colors"></span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mb-3">Quotation and Planning</h3>
+                    <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                        Preparation of a detailed, itemized quotation alongside a practical execution schedule and material procurement plan.
+                    </p>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="relative bg-white dark:bg-charcoal-950 p-8 border border-concrete-200 dark:border-white/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-display text-3xl font-bold text-gold-accent">04</span>
+                        <span class="h-[1px] flex-grow bg-concrete-200 dark:bg-white/10 ml-4 group-hover:bg-gold-accent transition-colors"></span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mb-3">Project Execution</h3>
+                    <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                        Disciplined on-site construction carried out by experienced tradespeople with regular progress updates and clean site management.
+                    </p>
+                </div>
+
+                <!-- Step 05 -->
+                <div class="relative bg-white dark:bg-charcoal-950 p-8 border border-concrete-200 dark:border-white/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-display text-3xl font-bold text-gold-accent">05</span>
+                        <span class="h-[1px] flex-grow bg-concrete-200 dark:bg-white/10 ml-4 group-hover:bg-gold-accent transition-colors"></span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mb-3">Quality Inspection</h3>
+                    <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                        Comprehensive snag-list verification and structural/finishing quality checks to confirm every detail meets our workmanship standards.
+                    </p>
+                </div>
+
+                <!-- Step 06 -->
+                <div class="relative bg-white dark:bg-charcoal-950 p-8 border border-concrete-200 dark:border-white/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-display text-3xl font-bold text-gold-accent">06</span>
+                        <span class="h-[1px] flex-grow bg-concrete-200 dark:bg-white/10 ml-4 group-hover:bg-gold-accent transition-colors"></span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mb-3">Project Handover</h3>
+                    <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">
+                        Final client walkthrough and formal handover of a clean, completed project ready for immediate residential or commercial use.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DRAMATIC FULL-WIDTH CALL TO ACTION ==================== -->
+    <section class="relative z-10 py-24 lg:py-32 bg-charcoal-950/80 overflow-hidden">
+        <!-- Background Image & Dark Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2070&q=85" 
+                 alt="Commercial and residential construction site at dusk" 
+                 class="w-full h-full object-cover opacity-35 hero-media-zoom">
+            <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/95 via-charcoal-950/85 to-charcoal-950/90"></div>
+            <div class="absolute inset-0 bg-architectural-grid"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center reveal">
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 bg-white/5 border border-white/15 rounded-sm mb-6">
+                <span class="w-2 h-2 bg-gold-accent animate-ping"></span>
+                <span class="text-xs font-bold uppercase tracking-[0.22em] text-concrete-200">Initiate Your Project</span>
+            </div>
+
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                READY TO START YOUR NEXT CONSTRUCTION PROJECT?
+            </h2>
+
+            <p class="text-base sm:text-lg text-concrete-200 max-w-2xl mx-auto leading-relaxed mb-10">
+                Let's turn your construction ideas into reality. Contact SAL General Construction today for a professional consultation and quotation.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+                <a href="tel:0767198627" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-charcoal-950 bg-white hover:bg-concrete-100 rounded-sm transition-all shadow-lg hover:-translate-y-0.5">
+                    <svg class="w-4 h-4 mr-2.5 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    Call 076 719 8627
+                </a>
+                <a href="https://wa.me/27767198627?text=Hello%20SAL%20General%20Construction%2C%20I%20would%20like%20to%20request%20a%20quotation%20for%20a%20construction%20project." 
+                   target="_blank" rel="noopener noreferrer" 
+                   class="btn-kinetic inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-white bg-gold-accent hover:bg-amber-600 rounded-sm transition-all shadow-lg hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.458 3.475 1.328 4.988L2 22l5.188-1.361a9.927 9.927 0 004.843 1.261h.004c5.515 0 9.969-4.454 9.969-9.969 0-2.663-1.037-5.167-2.921-7.051A9.905 9.905 0 0012.031 2zm0 18.215h-.003a8.268 8.268 0 01-4.214-1.153l-.302-.179-3.133.822.836-3.054-.197-.313a8.253 8.253 0 01-1.265-4.384c0-4.566 3.715-8.281 8.284-8.281 2.212 0 4.291.862 5.855 2.427a8.227 8.227 0 012.424 5.857c0 4.566-3.716 8.281-8.285 8.281zm4.544-6.202c-.249-.125-1.473-.727-1.701-.81-.228-.083-.394-.125-.56.125-.166.249-.643.81-.788.976-.145.166-.29.187-.539.062-.249-.125-1.052-.388-2.004-1.237-.741-.661-1.241-1.477-1.386-1.726-.145-.249-.015-.384.109-.508.112-.112.249-.291.374-.436.125-.145.166-.249.249-.415.083-.166.042-.311-.021-.436-.062-.125-.56-1.35-.768-1.848-.202-.485-.407-.419-.56-.427l-.477-.008c-.166 0-.436.062-.664.311-.228.249-.871.851-.871 2.076 0 1.225.892 2.408 1.017 2.574.125.166 1.756 2.681 4.254 3.76.594.256 1.058.41 1.42.524.597.19 1.14.163 1.569.099.479-.071 1.473-.602 1.681-1.184.208-.581.208-1.08.145-1.184-.062-.104-.228-.166-.477-.291z"/></svg>
+                    Request a Quote on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT & QUOTATION SECTION ==================== -->
+    <section id="contact" class="relative z-10 py-24 lg:py-32 bg-white/85 dark:bg-charcoal-950/85 backdrop-blur-sm transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                
+                <!-- Left Corporate Contact Details -->
+                <div class="lg:col-span-5 reveal">
+                    <div class="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.22em] text-gold-accent mb-4">
+                        <span class="w-8 h-[2px] bg-gold-accent"></span>
+                        <span>Direct Desk</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-charcoal-900 dark:text-white leading-tight mb-6">
+                        CONTACT & PROJECT ENQUIRIES
+                    </h2>
+
+                    <p class="text-concrete-600 dark:text-concrete-400 text-base leading-relaxed mb-8">
+                        Reach out to discuss residential builds, commercial renovations, maintenance contracts, or specialized finishing requirements. We respond promptly during business hours.
+                    </p>
+
+                    <!-- Corporate Info Cards -->
+                    <div class="space-y-4 mb-8">
+                        <div class="p-5 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 rounded-sm flex items-start gap-4 transition-transform duration-300 hover:translate-x-1">
+                            <div class="w-10 h-10 bg-charcoal-900 dark:bg-charcoal-800 text-gold-accent flex items-center justify-center rounded-sm shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider text-concrete-400">Registered Entity</p>
+                                <p class="font-display font-bold text-charcoal-900 dark:text-white text-base mt-0.5">SAL General Construction (Pty) Ltd</p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 rounded-sm flex items-start gap-4 transition-transform duration-300 hover:translate-x-1">
+                            <div class="w-10 h-10 bg-charcoal-900 dark:bg-charcoal-800 text-gold-accent flex items-center justify-center rounded-sm shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider text-concrete-400">Direct Telephone</p>
+                                <a href="tel:0767198627" class="font-display font-bold text-charcoal-900 dark:text-white hover:text-gold-accent text-lg mt-0.5 inline-block transition-colors">
+                                    076 719 8627
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 rounded-sm flex items-start gap-4 transition-transform duration-300 hover:translate-x-1">
+                            <div class="w-10 h-10 bg-charcoal-900 dark:bg-charcoal-800 text-gold-accent flex items-center justify-center rounded-sm shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-wider text-concrete-400">Business Hours</p>
+                                <p class="font-display font-bold text-charcoal-900 dark:text-white text-base mt-0.5">Monday – Friday, 08:00 – 17:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct WhatsApp Button -->
+                    <a href="https://wa.me/27767198627" target="_blank" rel="noopener noreferrer" 
+                       class="w-full py-4 px-6 bg-[#1F2937] hover:bg-[#111827] text-white rounded-sm flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-wider transition-all shadow-md border-l-4 border-[#25D366] hover:-translate-y-0.5">
+                        <svg class="w-5 h-5 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.458 3.475 1.328 4.988L2 22l5.188-1.361a9.927 9.927 0 004.843 1.261h.004c5.515 0 9.969-4.454 9.969-9.969 0-2.663-1.037-5.167-2.921-7.051A9.905 9.905 0 0012.031 2zm0 18.215h-.003a8.268 8.268 0 01-4.214-1.153l-.302-.179-3.133.822.836-3.054-.197-.313a8.253 8.253 0 01-1.265-4.384c0-4.566 3.715-8.281 8.284-8.281 2.212 0 4.291.862 5.855 2.427a8.227 8.227 0 012.424 5.857c0 4.566-3.716 8.281-8.285 8.281zm4.544-6.202c-.249-.125-1.473-.727-1.701-.81-.228-.083-.394-.125-.56.125-.166.249-.643.81-.788.976-.145.166-.29.187-.539.062-.249-.125-1.052-.388-2.004-1.237-.741-.661-1.241-1.477-1.386-1.726-.145-.249-.015-.384.109-.508.112-.112.249-.291.374-.436.125-.145.166-.249.249-.415.083-.166.042-.311-.021-.436-.062-.125-.56-1.35-.768-1.848-.202-.485-.407-.419-.56-.427l-.477-.008c-.166 0-.436.062-.664.311-.228.249-.871.851-.871 2.076 0 1.225.892 2.408 1.017 2.574.125.166 1.756 2.681 4.254 3.76.594.256 1.058.41 1.42.524.597.19 1.14.163 1.569.099.479-.071 1.473-.602 1.681-1.184.208-.581.208-1.08.145-1.184-.062-.104-.228-.166-.477-.291z"/></svg>
+                        <span>Chat Directly on WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Right Professional Quotation & Enquiry Form -->
+                <div class="lg:col-span-7 reveal">
+                    <div class="bg-concrete-50 dark:bg-charcoal-900 border border-concrete-200 dark:border-white/10 p-8 sm:p-10 rounded-sm shadow-sm">
+                        <h3 class="font-display text-2xl font-bold text-charcoal-900 dark:text-white mb-2">Request a Project Quotation</h3>
+                        <p class="text-sm text-concrete-600 dark:text-concrete-400 mb-8">Complete the scope details below and our team will prepare your consultation response.</p>
+
+                        <form id="enquiry-form" class="space-y-6" novalidate>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- Customer Name -->
+                                <div>
+                                    <label for="customer-name" class="block text-xs font-bold uppercase tracking-wider text-charcoal-800 dark:text-concrete-200 mb-2">
+                                        Full Name / Company <span class="text-gold-accent">*</span>
+                                    </label>
+                                    <input type="text" id="customer-name" name="name" required placeholder="e.g. Thabo Mokoena"
+                                           class="w-full px-4 py-3 bg-white dark:bg-charcoal-950 border border-concrete-200 dark:border-white/15 rounded-sm text-sm text-charcoal-900 dark:text-white focus:outline-none focus:border-gold-accent transition-colors">
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div>
+                                    <label for="customer-phone" class="block text-xs font-bold uppercase tracking-wider text-charcoal-800 dark:text-concrete-200 mb-2">
+                                        Phone Number <span class="text-gold-accent">*</span>
+                                    </label>
+                                    <input type="tel" id="customer-phone" name="phone" required placeholder="e.g. 076 000 0000"
+                                           class="w-full px-4 py-3 bg-white dark:bg-charcoal-950 border border-concrete-200 dark:border-white/15 rounded-sm text-sm text-charcoal-900 dark:text-white focus:outline-none focus:border-gold-accent transition-colors">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- Email Address -->
+                                <div>
+                                    <label for="customer-email" class="block text-xs font-bold uppercase tracking-wider text-charcoal-800 dark:text-concrete-200 mb-2">
+                                        Email Address <span class="text-gold-accent">*</span>
+                                    </label>
+                                    <input type="email" id="customer-email" name="email" required placeholder="name@domain.co.za"
+                                           class="w-full px-4 py-3 bg-white dark:bg-charcoal-950 border border-concrete-200 dark:border-white/15 rounded-sm text-sm text-charcoal-900 dark:text-white focus:outline-none focus:border-gold-accent transition-colors">
+                                </div>
+
+                                <!-- Service Required -->
+                                <div>
+                                    <label for="service-required" class="block text-xs font-bold uppercase tracking-wider text-charcoal-800 dark:text-concrete-200 mb-2">
+                                        Service Required <span class="text-gold-accent">*</span>
+                                    </label>
+                                    <select id="service-required" name="service" required
+                                            class="w-full px-4 py-3 bg-white dark:bg-charcoal-950 border border-concrete-200 dark:border-white/15 rounded-sm text-sm text-charcoal-900 dark:text-white focus:outline-none focus:border-gold-accent transition-colors">
+                                        <option value="" disabled selected>Select a construction service...</option>
+                                        <option value="General Building Construction">1. General Building Construction</option>
+                                        <option value="Residential Construction">2. Residential Construction</option>
+                                        <option value="Commercial Construction">3. Commercial Construction</option>
+                                        <option value="Building Renovations and Extensions">4. Building Renovations and Extensions</option>
+                                        <option value="Tiling and Flooring Installation">5. Tiling and Flooring Installation</option>
+                                        <option value="Plumbing Installations and Repairs">6. Plumbing Installations and Repairs</option>
+                                        <option value="Carpentry and Woodwork">7. Carpentry and Woodwork</option>
+                                        <option value="Interior and Exterior Improvements">8. Interior and Exterior Improvements</option>
+                                        <option value="Property Maintenance">9. Property Maintenance</option>
+                                        <option value="General Construction and Building Projects">10. General Construction and Building Projects</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Project Location -->
+                            <div>
+                                <label for="project-location" class="block text-xs font-bold uppercase tracking-wider text-charcoal-800 dark:text-concrete-200 mb-2">
+                                    Project Location / Suburb <span class="text-gold-accent">*</span>
+                                </label>
+                                <input type="text" id="project-location" name="location" required placeholder="e.g. Johannesburg / Pretoria / Gauteng"
+                                       class="w-full px-4 py-3 bg-white dark:bg-charcoal-950 border border-concrete-200 dark:border-white/15 rounded-sm text-sm text-charcoal-900 dark:text-white focus:outline-none focus:border-gold-accent transition-colors">
+                            </div>
+
+                            <!-- Project Description -->
+                            <div>
+                                <label for="project-description" class="block text-xs font-bold uppercase tracking-wider text-charcoal-800 dark:text-concrete-200 mb-2">
+                                    Project Scope & Description <span class="text-gold-accent">*</span>
+                                </label>
+                                <textarea id="project-description" name="description" rows="4" required placeholder="Briefly describe the building, renovation, or maintenance work required, approximate dimensions, and preferred timeframe..."
+                                          class="w-full px-4 py-3 bg-white dark:bg-charcoal-950 border border-concrete-200 dark:border-white/15 rounded-sm text-sm text-charcoal-900 dark:text-white focus:outline-none focus:border-gold-accent transition-colors"></textarea>
+                            </div>
+
+                            <!-- Validation / Status Feedback Banner -->
+                            <div id="form-feedback" class="hidden p-4 rounded-sm text-sm"></div>
+
+                            <!-- Submit & Instant Dispatch Options -->
+                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                <button type="submit" class="btn-kinetic flex-1 py-4 px-8 bg-gold-accent hover:bg-amber-600 text-white font-bold text-xs uppercase tracking-wider rounded-sm transition-all shadow-md">
+                                    Submit Enquiry
+                                </button>
+                                <button type="button" id="send-via-whatsapp-btn" class="py-4 px-6 bg-charcoal-900 dark:bg-charcoal-800 hover:bg-charcoal-800 dark:hover:bg-charcoal-700 text-white font-bold text-xs uppercase tracking-wider rounded-sm transition-all">
+                                    Send Details via WhatsApp
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CORPORATE FOOTER ==================== -->
+    <footer class="relative z-10 bg-charcoal-950/95 backdrop-blur-md text-concrete-300 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-16 lg:py-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+                
+                <!-- Brand & Description -->
+                <div class="lg:col-span-4">
+                    <div class="flex items-center gap-3.5 mb-5">
+                        <div class="w-10 h-10 bg-gold-accent flex items-center justify-center rounded-sm">
+                            <span class="font-display font-bold text-white text-lg tracking-wider">SAL</span>
+                        </div>
+                        <div>
+                            <span class="font-display font-bold text-white text-lg tracking-tight block leading-none">SAL GENERAL</span>
+                            <span class="text-[11px] font-semibold tracking-[0.2em] text-concrete-400 uppercase mt-1 block">Construction (Pty) Ltd</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-concrete-400 leading-relaxed mb-6">
+                        SAL General Construction (Pty) Ltd is a professional construction company providing building, renovation and general construction solutions with a steadfast focus on quality workmanship, reliable service delivery, attention to detail and customer satisfaction.
+                    </p>
+                    <!-- Social Media Placeholders -->
+                    <div class="flex items-center space-x-3">
+                        <a href="#contact" aria-label="LinkedIn" class="w-9 h-9 rounded-sm bg-charcoal-900 border border-white/10 flex items-center justify-center text-concrete-400 hover:text-gold-accent hover:border-gold-accent transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                        </a>
+                        <a href="#contact" aria-label="Facebook" class="w-9 h-9 rounded-sm bg-charcoal-900 border border-white/10 flex items-center justify-center text-concrete-400 hover:text-gold-accent hover:border-gold-accent transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+                        </a>
+                        <a href="#contact" aria-label="Instagram" class="w-9 h-9 rounded-sm bg-charcoal-900 border border-white/10 flex items-center justify-center text-concrete-400 hover:text-gold-accent hover:border-gold-accent transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Core Services Column 1 -->
+                <div class="lg:col-span-3">
+                    <h4 class="font-display text-sm font-bold uppercase tracking-wider text-white mb-5">Building & Construction</h4>
+                    <ul class="space-y-2.5 text-sm text-concrete-400">
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">General Building Construction</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Residential Construction</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Commercial Construction</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Renovations & Extensions</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">General Building Projects</a></li>
+                    </ul>
+                </div>
+
+                <!-- Core Services Column 2 -->
+                <div class="lg:col-span-2">
+                    <h4 class="font-display text-sm font-bold uppercase tracking-wider text-white mb-5">Trades & Maintenance</h4>
+                    <ul class="space-y-2.5 text-sm text-concrete-400">
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Tiling & Flooring</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Plumbing Installations</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Carpentry & Woodwork</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Interior & Exterior</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Property Maintenance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Hours -->
+                <div class="lg:col-span-3">
+                    <h4 class="font-display text-sm font-bold uppercase tracking-wider text-white mb-5">Corporate Contact</h4>
+                    <ul class="space-y-3 text-sm text-concrete-400">
+                        <li class="text-white font-semibold">SAL General Construction (Pty) Ltd</li>
+                        <li>
+                            <span class="block text-xs uppercase tracking-wider text-concrete-400">Telephone / WhatsApp:</span>
+                            <a href="tel:0767198627" class="text-white font-semibold hover:text-gold-accent transition-colors">076 719 8627</a>
+                        </li>
+                        <li>
+                            <span class="block text-xs uppercase tracking-wider text-concrete-400">Business Hours:</span>
+                            <span class="text-concrete-200">Monday – Friday, 08:00 – 17:00</span>
+                        </li>
+                        <li class="pt-2">
+                            <a href="https://wa.me/27767198627" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-gold-accent hover:text-amber-400">
+                                Message on WhatsApp &rarr;
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Closing Corporate Statement -->
+            <div class="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                <p class="font-display font-bold tracking-[0.16em] text-white uppercase text-center md:text-left">
+                    SAL GENERAL CONSTRUCTION — BUILDING WITH PURPOSE. DELIVERING WITH PRIDE.
+                </p>
+                <p class="text-concrete-400">
+                    &copy; <span id="current-year"></span> SAL General Construction (Pty) Ltd. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== FLOATING WHATSAPP ACTION BUTTON ==================== -->
+    <a href="https://wa.me/27767198627?text=Hello%20SAL%20General%20Construction%2C%20I%20would%20like%20to%20enquire%20about%20a%20construction%20project." 
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Chat on WhatsApp"
+       class="animate-pulse-glow fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-charcoal-900 hover:bg-charcoal-800 text-white px-4 py-3.5 rounded-sm shadow-2xl border border-white/15 group transition-all hover:-translate-y-1">
+        <span class="w-9 h-9 rounded-sm bg-[#25D366] flex items-center justify-center text-white shrink-0">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.458 3.475 1.328 4.988L2 22l5.188-1.361a9.927 9.927 0 004.843 1.261h.004c5.515 0 9.969-4.454 9.969-9.969 0-2.663-1.037-5.167-2.921-7.051A9.905 9.905 0 0012.031 2zm0 18.215h-.003a8.268 8.268 0 01-4.214-1.153l-.302-.179-3.133.822.836-3.054-.197-.313a8.253 8.253 0 01-1.265-4.384c0-4.566 3.715-8.281 8.284-8.281 2.212 0 4.291.862 5.855 2.427a8.227 8.227 0 012.424 5.857c0 4.566-3.716 8.281-8.285 8.281zm4.544-6.202c-.249-.125-1.473-.727-1.701-.81-.228-.083-.394-.125-.56.125-.166.249-.643.81-.788.976-.145.166-.29.187-.539.062-.249-.125-1.052-.388-2.004-1.237-.741-.661-1.241-1.477-1.386-1.726-.145-.249-.015-.384.109-.508.112-.112.249-.291.374-.436.125-.145.166-.249.249-.415.083-.166.042-.311-.021-.436-.062-.125-.56-1.35-.768-1.848-.202-.485-.407-.419-.56-.427l-.477-.008c-.166 0-.436.062-.664.311-.228.249-.871.851-.871 2.076 0 1.225.892 2.408 1.017 2.574.125.166 1.756 2.681 4.254 3.76.594.256 1.058.41 1.42.524.597.19 1.14.163 1.569.099.479-.071 1.473-.602 1.681-1.184.208-.581.208-1.08.145-1.184-.062-.104-.228-.166-.477-.291z"/></svg>
+        </span>
+        <span class="hidden sm:inline text-xs font-bold uppercase tracking-wider pr-1">WhatsApp Quote</span>
+    </a>
+
+    <!-- ==================== LIGHTBOX MODAL FOR GALLERY ENLARGEMENT ==================== -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-charcoal-950/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+        <div class="relative max-w-5xl w-full bg-charcoal-900 border border-white/15 rounded-sm overflow-hidden shadow-2xl">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                <div>
+                    <span id="lightbox-category" class="text-xs font-bold uppercase tracking-widest text-gold-accent block"></span>
+                    <h3 id="lightbox-title" class="font-display text-lg font-bold text-white"></h3>
+                </div>
+                <button id="close-lightbox" type="button" class="p-2 text-concrete-300 hover:text-white border border-white/15 rounded-sm" aria-label="Close Preview">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="bg-black flex items-center justify-center max-h-[72vh] overflow-hidden">
+                <img id="lightbox-img" src="" alt="" class="w-full h-auto max-h-[72vh] object-contain">
+            </div>
+            <div class="px-6 py-4 bg-charcoal-900 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <p id="lightbox-caption" class="text-sm text-concrete-300"></p>
+                <a id="lightbox-enquire-btn" href="#contact" class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-gold-accent hover:bg-amber-600 rounded-sm whitespace-nowrap">
+                    Enquire About Similar Work
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SERVICE DETAIL MODAL ==================== -->
+    <div id="service-modal" class="fixed inset-0 z-50 hidden bg-charcoal-950/90 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+        <div class="relative max-w-2xl w-full bg-white rounded-sm overflow-hidden shadow-2xl border border-concrete-200">
+            <div class="relative h-60 bg-charcoal-900">
+                <img id="service-modal-img" src="" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-charcoal-950/20 to-transparent"></div>
+                <button id="close-service-modal" type="button" class="absolute top-4 right-4 p-2 bg-charcoal-950/80 text-white hover:bg-gold-accent rounded-sm transition-colors" aria-label="Close Service Details">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+                <div class="absolute bottom-4 left-6 right-6">
+                    <span id="service-modal-num" class="text-xs font-bold uppercase tracking-widest text-gold-accent"></span>
+                    <h3 id="service-modal-title" class="font-display text-2xl font-bold text-white mt-1"></h3>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8">
+                <p id="service-modal-desc" class="text-concrete-600 text-base leading-relaxed mb-6"></p>
+                <div class="bg-concrete-50 border border-concrete-200 p-4 rounded-sm mb-6">
+                    <p class="text-xs font-bold uppercase tracking-wider text-charcoal-900 mb-2">Key Deliverables Included:</p>
+                    <ul id="service-modal-points" class="space-y-1.5 text-sm text-concrete-600"></ul>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="service-modal-quote-btn" type="button" class="flex-1 py-3.5 px-6 bg-gold-accent hover:bg-amber-600 text-white font-bold text-xs uppercase tracking-wider rounded-sm transition-colors">
+                        Request a Free Quote for This Service
+                    </button>
+                    <a href="https://wa.me/27767198627" target="_blank" rel="noopener noreferrer" class="py-3.5 px-6 bg-charcoal-900 hover:bg-charcoal-800 text-white font-bold text-xs uppercase tracking-wider rounded-sm text-center transition-colors">
+                        WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== INTERACTIVE APPLICATION LOGIC ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set Current Copyright Year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 1. ALL 10 CORE SERVICES DATA (Strictly factual, no fabricated credentials)
+            const servicesData = [
+                {
+                    num: "01",
+                    title: "General Building Construction",
+                    shortDesc: "Complete structural building works from earthworks, foundations, and brickwork to roofing and structural finishing.",
+                    fullDesc: "SAL General Construction (Pty) Ltd delivers comprehensive general building construction services executed with structural discipline and attention to detail. We manage every stage of construction to ensure safe, durable, and well-finished structures.",
+                    points: ["Foundations, concrete slabs & brickwork", "Structural framing & roof construction", "Plastering, waterproofing & external finishes"],
+                    image: "https://images.pexels.com/photos/5335017/pexels-photo-5335017.jpeg?auto=compress&cs=tinysrgb&w=900"
+                },
+                {
+                    num: "02",
+                    title: "Residential Construction",
+                    shortDesc: "New home builds, boundary walls, garages, and bespoke residential structures crafted for lasting comfort and value.",
+                    fullDesc: "We partner with homeowners and residential developers to construct durable, modern living spaces. From custom family homes to outbuildings and boundary enclosures, we prioritize clean execution and reliable timelines.",
+                    points: ["New residential dwellings & additions", "Boundary walls, paving & garages", "Complete turnkey residential finishes"],
+                    image: "https://images.pexels.com/photos/32863067/pexels-photo-32863067.jpeg?auto=compress&cs=tinysrgb&w=900"
+                },
+                {
+                    num: "03",
+                    title: "Commercial Construction",
+                    shortDesc: "Functional, durable commercial spaces, retail units, office fit-outs, and light industrial building solutions.",
+                    fullDesc: "Our commercial construction division supports business owners and property managers with dependable building execution, structural alterations, and commercial workspace developments tailored to operational needs.",
+                    points: ["Office, retail & commercial building works", "Partitioning, flooring & commercial fit-outs", "Scheduled execution minimizing business disruption"],
+                    image: "https://images.pexels.com/photos/2323080/pexels-photo-2323080.jpeg?auto=compress&cs=tinysrgb&w=900"
+                },
+                {
+                    num: "04",
+                    title: "Building Renovations and Extensions",
+                    shortDesc: "Structural additions, room extensions, and full-property modernizations seamlessly integrated with existing architecture.",
+                    fullDesc: "Transform and expand your existing property with carefully planned renovations and structural extensions. We ensure new additions tie cleanly into existing brickwork, roofing, and services.",
+                    points: ["Home & commercial room extensions", "Kitchen, bathroom & living area remodels", "Structural alterations & layout reconfiguration"],
+                    image: "https://images.pexels.com/photos/30924413/pexels-photo-30924413.jpeg?auto=compress&cs=tinysrgb&w=900"
+                },
+                {
+                    num: "05",
+                    title: "Tiling and Flooring Installation",
+                    shortDesc: "Precision porcelain, ceramic, natural stone tiling, screed preparation, and modern flooring installations.",
+                    fullDesc: "Achieve crisp, level, and long-lasting surfaces with our specialized tiling and flooring team. We handle surface preparation, waterproofing, precision tile setting, and grouting for residential and commercial floors and walls.",
+                    points: ["Large-format porcelain & ceramic tiling", "Bathroom, kitchen & patio wall/floor tiling", "Subfloor screeding, levelling & laminate/vinyl flooring"],
+                    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80"
+                },
+                {
+                    num: "06",
+                    title: "Plumbing Installations and Repairs",
+                    shortDesc: "Reliable water supply piping, drainage installations, sanitaryware fitting, and responsive leak diagnostics.",
+                    fullDesc: "We provide neat, dependable plumbing installations for new builds and renovations, as well as prompt fault-finding and repairs to keep residential and commercial water systems operating smoothly.",
+                    points: ["New water reticulation & drainage piping", "Bathroom & kitchen sanitaryware installations", "Pipe repairs, leak resolution & maintenance"],
+                    image: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=900&q=80"
+                },
+                {
+                    num: "07",
+                    title: "Carpentry and Woodwork",
+                    shortDesc: "Custom cabinetry, door hanging, roof trusses, skirting, ceilings, and architectural timber finishes.",
+                    fullDesc: "Our carpentry specialists deliver accurate structural and finishing woodwork—from roof timber structures and door frames to built-in cupboards, shelving, and precision trim work.",
+                    points: ["Door frames, solid/hollow doors & ironmongery", "Built-in cupboards, cabinetry & shelving", "Roof carpentry, ceilings, cornices & skirting"],
+                    image: "https://images.pexels.com/photos/6790093/pexels-photo-6790093.jpeg?auto=compress&cs=tinysrgb&w=900"
+                },
+                {
+                    num: "08",
+                    title: "Interior and Exterior Improvements",
+                    shortDesc: "Comprehensive painting, plastering, ceilings, facades, paving, and aesthetic property upgrades.",
+                    fullDesc: "Enhance property presentation, weather protection, and structural longevity with our interior and exterior improvement solutions, executed with thorough surface preparation and clean finishes.",
+                    points: ["Interior & exterior painting and coatings", "Skimming, ceiling installations & feature walls", "Exterior facade upgrades, paving & waterproofing"],
+                    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80"
+                },
+                {
+                    num: "09",
+                    title: "Property Maintenance",
+                    shortDesc: "Proactive and reactive building maintenance keeping residential, retail, and commercial properties in peak condition.",
+                    fullDesc: "Protect your property investment with reliable, multi-trade maintenance services. SAL General Construction handles routine upkeep, damp and roof repairs, plumbing, painting, and general building restoration.",
+                    points: ["Preventative & reactive building repairs", "Roof leak repairs, waterproofing & damp treatment", "Multi-trade upkeep for landlords & commercial sites"],
+                    image: "https://images.pexels.com/photos/4567374/pexels-photo-4567374.jpeg?auto=compress&cs=tinysrgb&w=900"
+                },
+                {
+                    num: "10",
+                    title: "General Construction and Building Projects",
+                    shortDesc: "End-to-end execution of bespoke building projects, civil works, boundary structures, and multi-trade contracts.",
+                    fullDesc: "For specialized or multi-disciplinary construction requirements, we coordinate all trades under a single point of accountability—delivering cohesive, high-standard building projects on schedule.",
+                    points: ["Single-point coordination across all building trades", "Custom structural & site improvement works", "Dedicated supervision from foundation to handover"],
+                    image: "https://images.pexels.com/photos/5335019/pexels-photo-5335019.jpeg?auto=compress&cs=tinysrgb&w=900"
+                }
+            ];
+
+            // Render Service Cards
+            const servicesGrid = document.getElementById('services-grid');
+            servicesData.forEach((service, index) => {
+                const card = document.createElement('article');
+                card.className = "service-card bg-white dark:bg-charcoal-950 border border-concrete-200 dark:border-white/10 rounded-sm overflow-hidden shadow-sm hover:shadow-xl flex flex-col justify-between reveal";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-60 overflow-hidden bg-charcoal-900">
+                            <img src="${service.image}" alt="${service.title}" loading="lazy" class="service-img w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/75 via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-2.5 py-1 bg-charcoal-950/90 text-gold-accent font-display text-xs font-bold tracking-widest rounded-sm border border-white/10">
+                                ${service.num}
+                            </span>
+                        </div>
+                        <div class="p-7">
+                            <h3 class="font-display text-xl font-bold text-charcoal-900 dark:text-white mb-3 leading-snug">${service.title}</h3>
+                            <p class="text-sm text-concrete-600 dark:text-concrete-400 leading-relaxed">${service.shortDesc}</p>
+                        </div>
+                    </div>
+                    <div class="px-7 pb-7 pt-2 flex items-center gap-3 border-t border-concrete-100 dark:border-white/10">
+                        <button type="button" data-service-idx="${index}" class="view-service-btn flex-1 py-3 px-4 text-xs font-bold uppercase tracking-wider text-charcoal-900 dark:text-white bg-concrete-100 dark:bg-charcoal-800 hover:bg-charcoal-900 hover:text-white dark:hover:bg-charcoal-700 rounded-sm transition-colors">
+                            View Service
+                        </button>
+                        <button type="button" data-quote-service="${service.title}" class="quote-service-btn flex-1 py-3 px-4 text-xs font-bold uppercase tracking-wider text-white bg-gold-accent hover:bg-amber-600 rounded-sm transition-colors">
+                            Request Quote
+                        </button>
+                    </div>
+                `;
+                servicesGrid.appendChild(card);
+            });
+
+            // 2. CAPABILITIES / PORTFOLIO GALLERY DATA (Strictly 6 Curated Pictures)
+            const galleryData = [
+                {
+                    category: "Building Construction",
+                    title: "Structural Masonry & Concrete Works",
+                    caption: "Precision foundation, brickwork, and reinforced structural construction standards.",
+                    image: "https://images.pexels.com/photos/39576121/pexels-photo-39576121.jpeg?auto=compress&cs=tinysrgb&w=1000",
+                    tall: true
+                },
+                {
+                    category: "Renovations",
+                    title: "Structural Property Extensions & Remodelling",
+                    caption: "Modernizing residential and commercial footprints with seamless architectural integration.",
+                    image: "https://images.pexels.com/photos/28885512/pexels-photo-28885512.jpeg?auto=compress&cs=tinysrgb&w=1000",
+                    tall: false
+                },
+                {
+                    category: "Tiling",
+                    title: "Precision Porcelain & Stone Floor Tiling",
+                    caption: "Level substrate preparation, crisp grout alignment, and durable surface finishing.",
+                    image: "https://images.pexels.com/photos/10481158/pexels-photo-10481158.jpeg?auto=compress&cs=tinysrgb&w=1000",
+                    tall: false
+                },
+                {
+                    category: "Plumbing",
+                    title: "Sanitaryware & Reticulation Installations",
+                    caption: "Clean, pressure-tested water supply, drainage, and bathroom plumbing fit-outs.",
+                    image: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1000&q=80",
+                    tall: false
+                },
+                {
+                    category: "Carpentry",
+                    title: "Architectural Joinery & Custom Woodwork",
+                    caption: "Bespoke cabinetry, door installations, and structural timber craftsmanship.",
+                    image: "https://images.pexels.com/photos/6790091/pexels-photo-6790091.jpeg?auto=compress&cs=tinysrgb&w=1000",
+                    tall: true
+                },
+                {
+                    category: "Interior Finishing",
+                    title: "Ceilings, Skimming & Modern Interior Finishes",
+                    caption: "Smooth wall finishes, lighting bulkheads, and high-durability architectural coatings.",
+                    image: "https://images.pexels.com/photos/7031578/pexels-photo-7031578.jpeg?auto=compress&cs=tinysrgb&w=1000",
+                    tall: false
+                }
+            ].slice(0, 6);
+
+            const galleryGrid = document.getElementById('gallery-grid');
+
+            function createGalleryCard(item, idx) {
+                const card = document.createElement('div');
+                card.className = "group relative overflow-hidden rounded-sm bg-charcoal-800 border border-white/15 cursor-pointer w-[300px] sm:w-[380px] lg:w-[420px] h-[320px] sm:h-[360px] shrink-0 shadow-2xl transition-transform duration-500 hover:-translate-y-2";
+                card.setAttribute('data-replaceable-slot', `project-slot-${idx + 1}`);
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover hero-media-zoom group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/95 via-charcoal-950/30 to-transparent opacity-85 group-hover:opacity-95 transition-opacity"></div>
+                    <div class="absolute top-4 left-4 px-2.5 py-1 bg-charcoal-950/80 border border-white/15 rounded-sm text-[10px] font-display font-bold tracking-widest text-gold-accent">
+                        0${idx + 1} / 06
+                    </div>
+                    <div class="absolute top-4 right-4 w-9 h-9 bg-charcoal-950/80 border border-white/15 rounded-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity" title="Enlarge Image">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-accent block mb-1.5">${item.category}</span>
+                        <h3 class="font-display text-lg font-bold text-white leading-snug mb-1">${item.title}</h3>
+                        <p class="text-xs text-concrete-300 line-clamp-2 opacity-90">${item.caption}</p>
+                    </div>
+                `;
+                card.addEventListener('click', () => openLightbox(item));
+                return card;
+            }
+
+            function renderGallery(filter = 'all') {
+                galleryGrid.innerHTML = '';
+                const filtered = filter === 'all' ? galleryData : galleryData.filter(item => item.category === filter);
+
+                if (filter === 'all') {
+                    // Seamless infinite moving filmstrip of all 6 pictures
+                    galleryGrid.className = "gallery-moving-track px-6";
+                    [...filtered, ...filtered].forEach((item, loopIdx) => {
+                        const originalIdx = loopIdx % filtered.length;
+                        galleryGrid.appendChild(createGalleryCard(item, originalIdx));
+                    });
+                } else {
+                    // Focused centered view when filtering a single discipline
+                    galleryGrid.className = "max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-6";
+                    filtered.forEach((item) => {
+                        const originalIdx = galleryData.indexOf(item);
+                        galleryGrid.appendChild(createGalleryCard(item, originalIdx));
+                    });
+                }
+            }
+
+            renderGallery('all');
+
+            // 2B. CINEMATIC MOVING PHOTOGRAPH REELS (HERO, ABOUT & FULL-WEBSITE BACKGROUND)
+            const heroSlidesContainer = document.getElementById('hero-cinema-slides');
+            const aboutSlidesContainer = document.getElementById('about-cinema-slides');
+            const aboutSlideLabel = document.getElementById('about-slide-label');
+            const cinemaSlidesContainer = document.getElementById('global-cinema-slides');
+
+            const allWebsiteSlides = [];
+            const seenUrls = new Set();
+            [...servicesData.map(s => ({ url: s.image, title: s.title })),
+             ...galleryData.map(g => ({ url: g.image, title: g.title }))].forEach(item => {
+                if (!seenUrls.has(item.url)) {
+                    seenUrls.add(item.url);
+                    allWebsiteSlides.push(item);
+                }
+            });
+
+            function populateCinemaReel(container, slides, offset = 0) {
+                if (!container) return [];
+                container.innerHTML = '';
+                slides.forEach((slide, idx) => {
+                    const realIdx = (idx + offset) % slides.length;
+                    const s = slides[realIdx];
+                    const img = document.createElement('img');
+                    img.src = s.url;
+                    img.alt = s.title;
+                    img.loading = idx < 2 ? 'eager' : 'lazy';
+                    img.className = `bg-cinema-slide ${idx === 0 ? 'is-active' : ''}`;
+                    img.style.animationDelay = `${-(idx * 3.5)}s`;
+                    container.appendChild(img);
+                });
+                return container.querySelectorAll('.bg-cinema-slide');
+            }
+
+            const heroSlideEls = populateCinemaReel(heroSlidesContainer, allWebsiteSlides, 0);
+            const aboutSlideEls = populateCinemaReel(aboutSlidesContainer, allWebsiteSlides, 2);
+            const globalSlideEls = populateCinemaReel(cinemaSlidesContainer, allWebsiteSlides, 4);
+
+            if (aboutSlideLabel && allWebsiteSlides.length > 2) {
+                aboutSlideLabel.textContent = allWebsiteSlides[2].title;
+            }
+
+            let stepIndex = 0;
+            if (allWebsiteSlides.length > 1) {
+                setInterval(() => {
+                    const total = allWebsiteSlides.length;
+                    const prev = stepIndex % total;
+                    stepIndex = (stepIndex + 1) % total;
+
+                    if (heroSlideEls.length) {
+                        heroSlideEls[prev].classList.remove('is-active');
+                        heroSlideEls[stepIndex].classList.add('is-active');
+                    }
+                    if (aboutSlideEls.length) {
+                        aboutSlideEls[prev].classList.remove('is-active');
+                        aboutSlideEls[stepIndex].classList.add('is-active');
+                        if (aboutSlideLabel) {
+                            const activeAboutItem = allWebsiteSlides[(stepIndex + 2) % total];
+                            aboutSlideLabel.textContent = activeAboutItem.title;
+                        }
+                    }
+                    if (globalSlideEls.length) {
+                        globalSlideEls[prev].classList.remove('is-active');
+                        globalSlideEls[stepIndex].classList.add('is-active');
+                    }
+                }, 4800);
+            }
+
+            // Gallery Filter Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('bg-gold-accent', 'text-white');
+                        b.classList.add('bg-charcoal-800', 'text-concrete-300');
+                    });
+                    btn.classList.remove('bg-charcoal-800', 'text-concrete-300');
+                    btn.classList.add('bg-gold-accent', 'text-white');
+                    renderGallery(btn.getAttribute('data-filter'));
+                });
+            });
+
+            // 3. LIGHTBOX CONTROLS
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const closeLightboxBtn = document.getElementById('close-lightbox');
+
+            function openLightbox(item) {
+                document.getElementById('lightbox-category').textContent = item.category;
+                document.getElementById('lightbox-title').textContent = item.title;
+                document.getElementById('lightbox-img').src = item.image;
+                document.getElementById('lightbox-img').alt = item.title;
+                document.getElementById('lightbox-caption').textContent = item.caption;
+                lightboxModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightboxModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+
+            closeLightboxBtn.addEventListener('click', closeLightbox);
+            lightboxModal.addEventListener('click', (e) => {
+                if (e.target === lightboxModal) closeLightbox();
+            });
+            document.getElementById('lightbox-enquire-btn').addEventListener('click', closeLightbox);
+
+            // 4. SERVICE DETAIL MODAL & DIRECT QUOTE PREFILL
+            const serviceModal = document.getElementById('service-modal');
+            const closeServiceModalBtn = document.getElementById('close-service-modal');
+            const serviceSelect = document.getElementById('service-required');
+            let activeModalServiceTitle = '';
+
+            function prefillAndScrollToQuote(serviceTitle) {
+                if (serviceSelect) {
+                    serviceSelect.value = serviceTitle;
+                }
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            document.addEventListener('click', (e) => {
+                const viewBtn = e.target.closest('.view-service-btn');
+                if (viewBtn) {
+                    const idx = parseInt(viewBtn.getAttribute('data-service-idx'), 10);
+                    const s = servicesData[idx];
+                    if (s) {
+                        activeModalServiceTitle = s.title;
+                        document.getElementById('service-modal-img').src = s.image;
+                        document.getElementById('service-modal-img').alt = s.title;
+                        document.getElementById('service-modal-num').textContent = `Service Discipline ${s.num}`;
+                        document.getElementById('service-modal-title').textContent = s.title;
+                        document.getElementById('service-modal-desc').textContent = s.fullDesc;
+                        
+                        const pointsList = document.getElementById('service-modal-points');
+                        pointsList.innerHTML = s.points.map(pt => `
+                            <li class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-gold-accent shrink-0"></span>
+                                <span>${pt}</span>
+                            </li>
+                        `).join('');
+
+                        serviceModal.classList.remove('hidden');
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+
+                const quoteBtn = e.target.closest('.quote-service-btn');
+                if (quoteBtn) {
+                    const title = quoteBtn.getAttribute('data-quote-service');
+                    prefillAndScrollToQuote(title);
+                }
+            });
+
+            function closeServiceModal() {
+                serviceModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+
+            closeServiceModalBtn.addEventListener('click', closeServiceModal);
+            serviceModal.addEventListener('click', (e) => {
+                if (e.target === serviceModal) closeServiceModal();
+            });
+
+            document.getElementById('service-modal-quote-btn').addEventListener('click', () => {
+                closeServiceModal();
+                prefillAndScrollToQuote(activeModalServiceTitle);
+            });
+
+            // Close Modals on Escape Key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                    closeServiceModal();
+                }
+            });
+
+            // 5. MOBILE HAMBURGER MENU
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden', !isHidden);
+                iconClose.classList.toggle('hidden', isHidden);
+                mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+            });
+
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // 6. ENQUIRY FORM VALIDATION & SUBMISSION HANDLER
+            const enquiryForm = document.getElementById('enquiry-form');
+            const formFeedback = document.getElementById('form-feedback');
+            const whatsappFormBtn = document.getElementById('send-via-whatsapp-btn');
+
+            function getFormValues() {
+                return {
+                    name: document.getElementById('customer-name').value.trim(),
+                    phone: document.getElementById('customer-phone').value.trim(),
+                    email: document.getElementById('customer-email').value.trim(),
+                    service: document.getElementById('service-required').value,
+                    location: document.getElementById('project-location').value.trim(),
+                    description: document.getElementById('project-description').value.trim()
+                };
+            }
+
+            function validateForm(vals) {
+                if (!vals.name || !vals.phone || !vals.email || !vals.service || !vals.location || !vals.description) {
+                    return "Please complete all required project fields before submitting.";
+                }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(vals.email)) {
+                    return "Please enter a valid email address.";
+                }
+                return null;
+            }
+
+            function showFeedback(message, isError = false) {
+                formFeedback.textContent = message;
+                formFeedback.classList.remove('hidden', 'bg-red-50', 'text-red-800', 'border-red-200', 'bg-emerald-50', 'text-emerald-900', 'border-emerald-200');
+                if (isError) {
+                    formFeedback.classList.add('bg-red-50', 'text-red-800', 'border', 'border-red-200');
+                } else {
+                    formFeedback.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-200');
+                }
+            }
+
+            enquiryForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const vals = getFormValues();
+                const error = validateForm(vals);
+                if (error) {
+                    showFeedback(error, true);
+                    return;
+                }
+
+                // Store structured enquiry payload & display confirmation
+                const referenceId = 'SAL-' + Math.floor(100000 + Math.random() * 900000);
+                showFeedback(
+                    `Thank you, ${vals.name}. Your project enquiry (${referenceId}) for ${vals.service} in ${vals.location} has been logged. Our team will contact you on ${vals.phone} during business hours (Mon–Fri, 08:00–17:00). For immediate assistance, you may also click "Send Details via WhatsApp".`,
+                    false
+                );
+                enquiryForm.reset();
+            });
+
+            whatsappFormBtn.addEventListener('click', () => {
+                const vals = getFormValues();
+                const error = validateForm(vals);
+                if (error) {
+                    showFeedback(error, true);
+                    return;
+                }
+
+                const message = 
+`Hello SAL General Construction (Pty) Ltd,
+I would like to request a quotation:
+
+*Name:* ${vals.name}
+*Phone:* ${vals.phone}
+*Email:* ${vals.email}
+*Service Required:* ${vals.service}
+*Project Location:* ${vals.location}
+*Project Scope:* ${vals.description}`;
+
+                const encoded = encodeURIComponent(message);
+                window.open(`https://wa.me/27767198627?text=${encoded}`, '_blank', 'noopener,noreferrer');
+            });
+
+            // 7. SCROLL REVEAL OBSERVER
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // 8. DAY & NIGHT THEME TOGGLE SWITCH
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+
+            // Initialize theme from saved preference or default to Day mode
+            const savedTheme = localStorage.getItem('sal-theme');
+            if (savedTheme === 'dark') {
+                htmlEl.classList.add('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                const isDark = htmlEl.classList.toggle('dark');
+                localStorage.setItem('sal-theme', isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
+</body>
+</html>
